@@ -1,9 +1,23 @@
 import './App.css';
-import Routing from './pages/routing/Routing';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import RoutingPostLogin from './pages/routing/RoutingPostLogin';
+import LogIn from './pages/logIn/LogIn';
 function App() {
+  const isLogin = false
   return (
     <div className="App">
-      <Routing />
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/logIn"
+            element={<LogIn />}
+          />
+          <Route
+            path='/*'
+            element={<RoutingPostLogin />}
+          />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
