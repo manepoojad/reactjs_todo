@@ -1,9 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 function About() {
   return (
-    <div className='aboutPage'><h3>About</h3></div>
+    <div className='aboutPage'><h3 style={{color:'blue'}}>This is About Page</h3></div>
   )
 }
 

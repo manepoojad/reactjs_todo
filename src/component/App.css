@@ -10,13 +10,13 @@ body {
 
 .routesWrapper{
     display: flex;
-    height:100% ;
-    width: 100%;
-    background-color: aqua;
+    height:100vh ;
+    width: 100vw;
+    background-color:cadetblue;
 }
 
 .sidebar {
-    height: 100%;
+    height:100vh;
     width: 200px;
     background-color: #2f4050;
 }
@@ -49,6 +49,18 @@ body {
     margin: 10px;
     margin-left: 0px;
 
+}
+
+.formWrapper{
+    width: 100vw;
+    height: 1000px;
+    display: grid;
+}
+
+.tableWrapper{
+    width: 1150px;
+    height: 500px;
+    /* display: grid; */
 }
     
 
