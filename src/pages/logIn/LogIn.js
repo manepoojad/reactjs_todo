@@ -12,25 +12,48 @@ function LogIn() {
     const { value, type, name } = e.target
     setUserName(value)
   }
-  console.log(userName)
+  // console.log(userName)
 
   const handlePasswordChange = (e) => {
     const { value, type, name } = e.target
     setPassword(value)
   }
-  console.log(password)
+  // console.log(password)
 
-  const handleSubmit = () => {
-    const loginDetails = {
-      userName: userName,
+  const handleSubmit = async () => {
+    const requestLoginPayload = {
+      email: userName,
       password: password
     }
-    console.log(loginDetails)
+    // console.log(requestLoginPayload)
+    // debugger
+    try {
+      const response = await fetch('http://localhost:8888/user/authJWT/login', {
+        method: "POST",
+        body: JSON.stringify(requestLoginPayload),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      const responseData = await response.json()
+      // console.log(responseData)
+      if (!response.ok) {
+        throw new Error(responseData)
+      }
+      const stringifyData = JSON.stringify(responseData)
+      localStorage.setItem("loginData", stringifyData)
+      // console.log(stringifyData)
+      navigate("/")
 
-    const getNewStringifyData = JSON.stringify(loginDetails)
-    localStorage.setItem("loginData", "getNewStringifyData")
-    console.log(getNewStringifyData)
-    navigate("/")
+    } catch (error) {
+      console.log(error)
+    }
+
+
+
+
+
+
 
   }
 
@@ -66,7 +89,7 @@ function LogIn() {
         </div>
         <div className="container">
           <button type="button" className="cancelbtn" onClick={() => handleCancelLogin()}>Cancel</button>
-           <a href="#">Forgot password?</a>
+          <a href="#">Forgot password?</a>
         </div>
 
       </form>
