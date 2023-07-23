@@ -5,7 +5,7 @@ function EditProject() {
     const navigate = useNavigate()
     const location = useLocation()
     const params = useParams()
-    console.log(params)
+    // console.log(params)
 
     const [projectData, setProjectData] = useState({
         date: "",
@@ -28,7 +28,7 @@ function EditProject() {
             backEndTech: projectDataFromLocation.technology && projectDataFromLocation.technology.backEndTech,
             library: projectDataFromLocation.library
         }
-        console.log(newProjectData)
+        // console.log(newProjectData)
         setProjectData({
             ...newProjectData
         })
@@ -63,26 +63,46 @@ function EditProject() {
             })
         }
     }
+    // console.log(projectData)
 
     const updateProjectData = async () => {
-
-        const response = await fetch('http://localhost:8888/project', {
-            method: "PUT",
-            body: JSON.stringify(projectData),
-            headers: {
-                "Content-Type": "application/json"
+        try {
+            const projectDataFromLocation=location.state.projectData
+            const requestPayload =
+            {
+                id: projectDataFromLocation.id,
+                title: projectData.title,
+                date: projectData.date,
+                description: projectData.description,
+                technology:{
+                    uiTech: projectData.uiTech,
+                    backEndTech: projectData.backEndTech,
+                },
+                library: projectData.library
             }
-        })
-        const responseData = await response.json()
-        setProjectData({
-            date: "",
-            title: "",
-            description: "",
-            uiTech: "",
-            backEndTech: "",
-            library: []
-        })
-        navigate("/project")
+            // console.log(requestPayload)
+            const response = await fetch('http://localhost:8888/project', {
+                method: "PUT",
+                body: JSON.stringify(requestPayload),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            const responseData = await response.json()
+            setProjectData({
+                date: "",
+                title: "",
+                description: "",
+                uiTech: "",
+                backEndTech: "",
+                library: []
+            })
+            navigate("/project")
+
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
     const handleCancelProjectForm = () => {

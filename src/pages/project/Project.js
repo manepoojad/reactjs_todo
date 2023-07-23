@@ -10,7 +10,7 @@ function Project() {
 
   useEffect(() => {
     getProjectList()
-    
+
   }, [])
 
   const getProjectList = async () => {
@@ -63,8 +63,13 @@ function Project() {
 
   return (
     <div>
+      <div className='d-flex justify-content-end'>
+        <NavLink to='/CreateProject'>
+          <button style={{ color: 'blanchedalmond' }}>Create Project</button>
+        </NavLink>
+      </div>
+
       <h4>Project</h4>
-      <span><NavLink className="nav-bar-link" to='/CreateProject'><h5 style={{color:'blanchedalmond'}}>CreateProject</h5></NavLink></span>
       <Table variant='dark' striped>
         <thead>
           <tr>
@@ -91,11 +96,11 @@ function Project() {
                     <td>{item.description}</td>
                     <td>{item.technology && item.technology.uiTech}</td>
                     <td>{item.technology && item.technology.backEndTech}</td>
-                    <td>{item.library}</td>
+                    <td>{item.library.join(", ")}</td>
                     <td>
                       <button type="button" onClick={() => handleDeleteProjectData(item.id)} >Delete</button>
                       <button type="button" onClick={() => handleEditProjectData(item)}>Edit</button>
-                      <button type='button' onClick={() => handleProjectDetailData(item)}>ProjectDetails</button>
+                      <button type='button' onClick={() => handleProjectDetailData(item)}>Details</button>
                     </td>
 
                   </tr>

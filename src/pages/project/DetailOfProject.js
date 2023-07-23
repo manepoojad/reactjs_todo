@@ -57,10 +57,10 @@ function DetailOfProject() {
 
     return (
         <div>
-            <h4>DetailOfProject</h4>
+            <h4>Detail Of Project</h4>
             <button type="button" onClick={() => handleRetrieveProjectData()} >Retrieve</button>
             <button type="button" onClick={() => handleEditProjectData()} >Edit</button>
-            <button type="button" onClick={() => handleDeleteProjectDetail()}>Delete</button>
+            <button type="button" onClick={() => handleDeleteProjectDetail(params.projectId)}>Delete</button>
 
             <Table variant="dark" striped className="tableWrapper">
                 <tbody>
@@ -90,7 +90,7 @@ function DetailOfProject() {
                     </tr>
                     <tr>
                         <th>Library Used:</th>
-                        <td>{projectData.library}</td>
+                        <td>{projectData.library.join(", ")}</td>
                     </tr>
                 </tbody>
             </Table>

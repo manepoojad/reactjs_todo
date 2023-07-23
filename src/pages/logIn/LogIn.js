@@ -38,7 +38,6 @@ function LogIn() {
     setUserName("")
     setPassword("")
 
-    // navigate("/project")
   }
 
   return (
@@ -67,7 +66,7 @@ function LogIn() {
         </div>
         <div className="container">
           <button type="button" className="cancelbtn" onClick={() => handleCancelLogin()}>Cancel</button>
-          <span class="psw">Forgot <a href="#">password?</a></span>
+           <a href="#">Forgot password?</a>
         </div>
 
       </form>
